@@ -1,32 +1,96 @@
 'use strict';
 
-function Image(number) {
+function Pictures(number) {
   this.name = number;
   this.source = 'img/' + this.name + '.jpg';
-  this.timeShown = 0;
-  Image.all.push(this);
+  this.amountOfShows = 0;
+  this.timesClicked = 0;
+  Pictures.all.push(this);
 }
 
-Image.all = [];
-Image.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
+Pictures.all = [];
+Pictures.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-for(var i = 0; i < Image.allNames.lenght; i++){
-  new Image(Image.allNames[i]);
+for(var i = 0; i < Pictures.allNames.length; i++){
+  new Pictures(Pictures.allNames[i]);
+}
+function makeRandomNumber(){
+  return Math.floor(Math.random() * Pictures.all.length);
 }
 
-Image.imgEl = document.getElementById('the_image');
+Pictures.leftImg = document.getElementById('left');
+Pictures.centerImg = document.getElementById('center');
+Pictures.rightImg = document.getElementById('right');
+Pictures.container = document.getElementById('imageContainer');
 
- var randomIndex = Math.floor(Math.random() * Image.all.length;
-  Image.imgEl.src = Image.all[randomIndex].source;
-  Image.imgEl.alt = Image.all[randomIndex].name;
-  Image.all[randomIndex].timeShown += 1;
 
-  console.log(Image.all[randomIndex].name+, 'has been shown' + Image.all.[randomIndex].timeShown + ' times');
+function displayImages(){
+  var numbers = [];
+  numbers[0] = makeRandomNumber();
+  numbers[1] = makeRandomNumber();
+  while(numbers[0] === numbers[1]) {
+    console.log('Dupe found');
+    numbers[1] = makeRandomNumber();
+  }
+  numbers[2] = makeRandomNumber();
+  while(numbers[2] === numbers[1] || numbers[2] ===
+    numbers[0]) {
+    console.log('Dupe found');
+    numbers[2] = makeRandomNumber();
+  }
+  // for(var i = 0; i < 3; i++) {
+  //   Pictures.pics[i].src = Pictures.all[currentlyShowing[i]].source;
+  //   Pictures.pics[i].alt = Pictures.all[currentlyShowing[i]].name;
+  //   var numshows = Pictures.all[currentlyShowing[i]].amountOfShows += 1;
+  //   console.log(Pictures.all[currentlyShowing[i]].name, 'has been shown', numshows, 'times');
+  // }
+
+
+
+
+  Pictures.leftImg.src = Pictures.all[numbers[0]].source;
+  Pictures.centerImg.src = Pictures.all[numbers[1]].source;
+  Pictures.rightImg.src = Pictures.all[numbers[2]].source;
+  Pictures.leftImg.alt = Pictures.all[numbers[0]].name;
+  Pictures.centerImg.alt = Pictures.all[numbers[1]].name;
+  Pictures.rightImg.alt = Pictures.all[numbers[2]].name;
+}
+function handleClick(e){
+  console.log(e.target);
+  displayImages();
 }
 
-document.getElementById('the image').addEventListener('click', randomImage);
+Pictures.container.addEventListener('click', handleClick);
 
-randomImage();
+displayImages();
+
+
+
+
+// for a pop up notifying they didnt click the pic.
+// function randomImages(){
+//   function handleClick(e){
+//     // if they dont click on an image
+//     if(e.target.id === "image section"){
+//       return alert('Click the pictures and not the page background')
+//     }
+//   }
+// }
+
+//  var randomIndex = Math.floor(Math.random() * Image.all.length;
+//   Image.imgEl.src = Image.all[randomIndex].source;
+//   Image.imgEl.alt = Image.all[randomIndex].name;
+//   Image.all[randomIndex].timeShown += 1;
+//
+//   console.log(Image.all[randomIndex].name+, 'has been shown' + Image.all.[randomIndex].timeShown + ' times');
+// }
+//
+// document.getElementById('the image').addEventListener('click', randomImage);
+//
+// randomImage();
+//
+
+
 
 // function randomIndex(){
 // var myimages=new Array()
