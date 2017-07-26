@@ -3,22 +3,16 @@ body {
   background-color: lightblue
   }
 
-  #image-container {
-    display: flex;
+  #imageContainer {
     justify-content: space-around;
     flex-direction: row;
+    background-color: red;
+    width: 75%;
+
 }
 
-.one {
+img {
   width: 400px;
   height: 400px;
-}
-
-.two {
-  width: 400px;
-  height: 400px;
-}
-.three {
-  width: 400px;
-  height: 400px;
+  display: inline;
 }
