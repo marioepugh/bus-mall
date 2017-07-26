@@ -6,13 +6,12 @@ body {
   #imageContainer {
     justify-content: space-around;
     flex-direction: row;
-    background-color: red;
-    width: 75%;
-
 }
 
 img {
   width: 400px;
   height: 400px;
-  display: inline;
+  margin: 1.5%
+  display:inline;
 }
+
