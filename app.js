@@ -1,7 +1,7 @@
 'use strict';
 
-function Pictures(number) {
-  this.name = number;
+function Pictures(name) {
+  this.name = name;
   this.source = 'img/' + this.name + '.jpg';
   this.amountOfShows = 0;
   this.timesClicked = 0;
@@ -14,7 +14,7 @@ Pictures.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubbleg
 Pictures.container = document.getElementById('imageContainer');
 // Need the first three DOM elements to assign the sources to them.
 Pictures.pics = [document.getElementById('left'), document.getElementById('center'), document.getElementById('right')];
-Pictures.totalClicks = 0;
+Pictures.totalClicks = 1;
 
 for(var i = 0; i < Pictures.allNames.length; i++){
   new Pictures(Pictures.allNames[i]);
@@ -33,29 +33,58 @@ function displayImages(){
     currentlyShowing[0] = makeRandomNumber();
     currentlyShowing[1] = makeRandomNumber();
     currentlyShowing[2] = makeRandomNumber();
+
   }
   for(var i = 0; i < 3; i++) {
     Pictures.pics[i].src = Pictures.all[currentlyShowing[i]].source;
     Pictures.pics[i].alt = Pictures.all[currentlyShowing[i]].name;
     var numshows = Pictures.all[currentlyShowing[i]].amountOfShows += 1;
-    console.log(Pictures.all[currentlyShowing[i]].name, 'has been shown', numshows, 'times');
+    // console.log(Pictures.all[currentlyShowing[i]].name, 'has been shown', numshows, 'times');
+    // console.log(Pictures.all[i].timesClicked, 'timesClicked');
   }
 }
 
 function handleClick(e){
+  e.preventDefault();
   console.log(Pictures.totalClicks, 'totalClicks');
   Pictures.totalClicks++;
+  Pictures.timesClicked++;
+  if (event.target.id === 'imageContainer'){
+    return alert('Click on the picture please');
+  }
   if(Pictures.totalClicks < 8) {
+    console.log('EVENT*******', e.target.alt);
+
+
+    // for(var i = 0; i < 3; i++){
+      for(var i = 0; i < Pictures.all.length; i++){
+        // console.log('im here');
+            var liEl = document.createElement('li');
+            liEl.textContent = 'Pictures.timesClicked this is just a placeholder';
+           dataList.appendChild(liEl);
+
+      }
+
     for(var i = 0; i < Pictures.all.length; i++){
-      if(Pictures.all[i].name === e.target.name) {
-        console.log(Pictures.all[i].name + ' was clicked');
-        Pictures.all[i].timesClicked++;
+      if(Pictures.all[i].name === e.target.alt) {
+        // console.log('++++++++', Pictures.all[i].timesClicked);
+        Pictures.all[i].timesClicked++
+        // console.log('------------', Pictures.all[i].timesClicked);
+
+        console.log(Pictures.all[i].name + ' was clicked ' + Pictures.all[i].timesClicked + ' times.');
       }
     }
+    for(var i = 0; i < Pictures.all.length; i++){
+      if(Pictures.all[i].name === e.target.name) {
+        console.log(Pictures.all[i].totalClicks + ' totalClicks: ');
+      }
+    }
+
     displayImages();
   }
   else {
     Pictures.container.removeEventListener('click', handleClick);
+    alert('You have complete the survey. Thank you for your participation!');
   }
 }
 
@@ -71,11 +100,9 @@ displayImages();
 
 
 
-
 //
 //
-//
-//
+//display a list of the products with votes received with each list item looking like "3 votes for the Banana Slicer".
 //
 // function randomPictures1(){
 //   var randomIndex = Math.floor(Math.random() * Pictures.all.length);
