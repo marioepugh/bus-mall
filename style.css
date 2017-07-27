@@ -4,14 +4,26 @@ body {
   }
 
   #imageContainer {
+    display: flex;
     justify-content: space-around;
     flex-direction: row;
+    background-color: lightblue;
+    /*width: 100%;*/
+    /*width: 400px;*/
+    /*height: 300px;*/
 }
 
 img {
   width: 400px;
   height: 400px;
-  margin: 1.5%
-  display:inline;
+  display: inline;
+  /*images: inline;*/
+
+}
+
+img {
+   padding:1px;
+   border:1px solid #021a40;
+   background-color:#ff0;
 }
 
