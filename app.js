@@ -64,7 +64,7 @@ function handleClick(e) {
       console.log(Pictures.all[i].totalClicks + ' totalClicks: ');
     }
   }
-  if (Pictures.totalClicks < 8) {
+  if (Pictures.totalClicks < 25) {
     console.log('EVENT*******', e.target.alt);
     displayImages();
   } else {
